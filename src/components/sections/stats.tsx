@@ -16,7 +16,7 @@ const stats = [
     icon: IndianRupee,
   },
   {
-    value: "4.9/5",
+    value: "4.8/5",
     label: "Customer Rating",
     icon: Star,
   },

@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 
 const trustIndicators = [
   { icon: Users, value: "1000+", label: "Happy Customers" },
-  { icon: Star, value: "4.9★", label: "Rating on Google" },
+  { icon: Star, value: "4.8★", label: "Rating on Google" },
   { icon: IndianRupee, value: "₹50+ Cr", label: "Disbursed" },
 ];
 

@@ -33,9 +33,9 @@ const footerColumns = [
   {
     title: "Company",
     links: [
-      { name: "About Us", page: "about" as PageType },
-      { name: "Careers", page: "careers" as PageType },
-      { name: "Press", page: "press" as PageType },
+      { name: "About Us", href: "/about" },
+      { name: "Careers", href: "/careers" },
+      { name: "Press", href: "/press" },
       { name: "Partners", href: "#partners" },
       { name: "Contact", href: "#cta" },
     ],
@@ -45,7 +45,7 @@ const footerColumns = [
     links: [
       { name: "EMI Calculator", href: "#emi-calculator" },
       { name: "Eligibility Check", href: "#cta" },
-      { name: "Blog", page: "blog" as PageType },
+      { name: "Blog", href: "/blog" },
       { name: "FAQs", href: "#faq" },
       { name: "Customer Support", href: "#cta" },
     ],
@@ -53,10 +53,10 @@ const footerColumns = [
   {
     title: "Legal",
     links: [
-      { name: "Privacy Policy", page: "privacy" as PageType },
-      { name: "Terms of Service", page: "terms" as PageType },
-      { name: "Refund Policy", page: "refund" as PageType },
-      { name: "Grievance Redressal", page: "grievance" as PageType },
+      { name: "Privacy Policy", href: "/privacy" },
+      { name: "Terms of Service", href: "/terms" },
+      { name: "Refund Policy", href: "/refund" },
+      { name: "Grievance Redressal", href: "/grievance" },
     ],
   },
 ];
@@ -145,21 +145,12 @@ export function Footer({ onNavigate }: FooterProps) {
               <ul className="space-y-2">
                 {column.links.map((link) => (
                   <li key={link.name}>
-                    {'page' in link ? (
-                      <button
-                        onClick={() => onNavigate(link.page as PageType)}
-                        className="text-sm text-white/70 hover:text-white transition-colors text-left"
-                      >
-                        {link.name}
-                      </button>
-                    ) : (
-                      <Link
-                        href={link.href}
-                        className="text-sm text-white/70 hover:text-white transition-colors"
-                      >
-                        {link.name}
-                      </Link>
-                    )}
+                    <Link
+                      href={link.href}
+                      className="text-sm text-white/70 hover:text-white transition-colors"
+                    >
+                      {link.name}
+                    </Link>
                   </li>
                 ))}
               </ul>

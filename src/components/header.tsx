@@ -32,8 +32,8 @@ export function Header({ onNavigate }: HeaderProps) {
 
   const handleLogoClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    // Scroll to top of page (hero section)
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // Navigate to home page
+    window.location.href = "/";
   };
 
   return (
@@ -61,23 +61,35 @@ export function Header({ onNavigate }: HeaderProps) {
       <div className="container mx-auto px-4">
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
-          <button
-            onClick={handleLogoClick}
-            className="flex items-center gap-1 hover:opacity-80 transition-opacity cursor-pointer"
-          >
-            <Image
-              src="/images/5.png"
-              alt="Prime Axis Capitals Logo"
-              width={150}
-              height={62}
-              className="h-14 w-auto"
-              sizes="(max-width: 768px) 100px, 120px"
-              priority
-            />
-            <span className="hidden sm:inline font-[var(--font-playfair)] text-2xl font-bold" style={{ color: '#1b94cb' }}>
-              Prime Axis Capital
-            </span>
-          </button>
+          <div className="flex items-center gap-4">
+            <button
+              onClick={handleLogoClick}
+              className="flex items-center gap-1 hover:opacity-80 transition-opacity cursor-pointer"
+            >
+              <Image
+                src="/images/5.png"
+                alt="Prime Axis Capitals Logo"
+                width={150}
+                height={62}
+                className="h-14 w-auto"
+                sizes="(max-width: 768px) 100px, 120px"
+                priority
+              />
+              <span className="hidden sm:inline font-[var(--font-playfair)] text-2xl font-bold" style={{ color: '#1b94cb' }}>
+                Prime Axis Capital
+              </span>
+            </button>
+            
+            {/* Back to Home button */}
+            <Link href="/">
+              <Button variant="outline" size="sm" className="hidden md:flex items-center gap-2">
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                Back to Home
+              </Button>
+            </Link>
+          </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-6">

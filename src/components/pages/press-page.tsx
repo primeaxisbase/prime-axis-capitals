@@ -27,12 +27,12 @@ const pressReleases = [
   },
   {
     id: 3,
-    title: "Prime Axis Capitals Achieves ₹500 Crore in Loan Disbursements",
+    title: "Prime Axis Capitals Achieves ₹50 Crore in Loan Disbursements",
     date: "March 5, 2026",
     author: "Media Relations",
-    excerpt: "A major milestone - Prime Axis Capitals celebrates the completion of ₹500 crore in loan disbursements, reflecting trust and satisfaction of over 10,000 customers.",
-    content: "Prime Axis Capitals proudly announces that it has successfully disbursed over ₹500 crores in loans to more than 10,000 satisfied customers. This milestone represents our unwavering commitment to financial inclusion and providing accessible lending solutions to individuals and businesses across India.",
-    imageAlt: "500 Crore Milestone",
+    excerpt: "A major milestone - Prime Axis Capitals celebrates the completion of ₹50 crore in loan disbursements, reflecting trust and satisfaction of over 10,000 customers.",
+    content: "Prime Axis Capitals proudly announces that it has successfully disbursed over ₹50 crores in loans to more than 10,00 satisfied customers. This milestone represents our unwavering commitment to financial inclusion and providing accessible lending solutions to individuals and businesses across India.",
+    imageAlt: "50 Crore Milestone",
   },
   {
     id: 4,

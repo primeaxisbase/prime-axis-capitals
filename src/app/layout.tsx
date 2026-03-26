@@ -39,9 +39,9 @@ export const metadata: Metadata = {
     "Financial Advisory",
   ],
   authors: [{ name: "Prime Axis Capitals" }],
-  metadataBase: new URL("https://primeaxis.in"),
+  metadataBase: new URL("https://primeaxiscapital.in"),
   alternates: {
-    canonical: "https://primeaxis.in",
+    canonical: "https://primeaxiscapital.in",
   },
   icons: {
     icon: "/logo.svg",
@@ -49,13 +49,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Prime Axis Capitals - Fast Loans & Trusted Financial Services",
     description: "Get quick approvals, transparent terms, and expert financial consulting with Prime Axis Capitals. Serve all loan categories and finance needs.",
-    url: "https://primeaxis.in",
+    url: "https://primeaxiscapital.in",
     siteName: "Prime Axis Capitals",
     type: "website",
     locale: "en_IN",
     images: [
       {
-        url: "https://primeaxis.in/logo.svg",
+        url: "https://primeaxiscapital.in/logo.svg",
         width: 1200,
         height: 630,
         alt: "Prime Axis Capitals logo",
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     title: "Prime Axis Capitals - Trusted Loan & Tax Experts",
     description: "Secure loans, GST & income tax filing, and accounting support. Easy online process, fast approval, and personalized finance advice.",
     creator: "@PrimeAxisCap",
-    images: ["https://primeaxis.in/logo.svg"],
+    images: ["https://primeaxiscapital.in/logo.svg"],
   },
 };
 

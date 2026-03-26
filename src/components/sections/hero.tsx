@@ -41,7 +41,7 @@ export function HeroSection() {
             className="text-center lg:text-left"
           >
             <Badge className="mb-4 text-white" style={{ background: '#1b94cb' }}>
-              Your Trusted Partner in Financial Growth
+              Simple Finance, Funding Sure
             </Badge>
             
             <h1 className="font-[var(--font-playfair)] text-4xl md:text-5xl lg:text-6xl font-bold text-black leading-tight mb-6">

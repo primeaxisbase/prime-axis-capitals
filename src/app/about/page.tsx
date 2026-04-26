@@ -3,9 +3,10 @@
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { AboutPage } from "@/components/pages/about-page";
+import { PageType } from "../page";
 
 export default function About() {
-  const handleNavigate = (page: string) => {
+  const handleNavigate = (page: PageType) => {
     // This will be handled by Next.js routing
     window.location.href = page === "home" ? "/" : `/${page}`;
   };

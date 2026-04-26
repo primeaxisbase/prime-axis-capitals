@@ -1,0 +1,37 @@
+{
+  "name": "Prime Axis Capitals - Financial Services",
+  "short_name": "Prime Axis",
+  "description": "Your trusted financial partner for loans, tax filing, and accounting services",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1b94cb",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en-IN",
+  "categories": ["finance", "business", "productivity"],
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Get Instant Quote",
+      "short_name": "Quote",
+      "description": "Get instant loan quotes",
+      "url": "/instant-quote",
+      "icons": [{ "src": "/logo.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Contact Us",
+      "short_name": "Contact",
+      "description": "Get in touch with our experts",
+      "url": "#cta",
+      "icons": [{ "src": "/logo.svg", "sizes": "any" }]
+    }
+  ]
+}

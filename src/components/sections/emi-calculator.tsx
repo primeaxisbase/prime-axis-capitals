@@ -76,7 +76,7 @@ export function EMICalculatorSection() {
   };
 
   return (
-    <section id="emi-calculator" className="py-16 md:py-24" style={{ background: '#f0f7fb' }}>
+    <section id="emi-calculator" className="py-16 md:py-24 bg-blue-50">
       <div className="container mx-auto px-4">
         {/* Section header */}
         <motion.div
@@ -135,7 +135,7 @@ export function EMICalculatorSection() {
                   <div className="space-y-3">
                     <div className="flex justify-between items-center">
                       <label className="text-sm font-medium text-black">Loan Amount</label>
-                      <span className="text-sm font-semibold" style={{ color: '#196b92' }}>
+                      <span className="text-sm font-semibold text-blue-700">
                         {formatCurrency(loanAmount)}
                       </span>
                     </div>
@@ -147,6 +147,7 @@ export function EMICalculatorSection() {
                       value={loanAmount}
                       onChange={(e) => setLoanAmount(Number(e.target.value))}
                       className="w-full"
+                      aria-label="Loan Amount"
                     />
                     <div className="flex justify-between text-xs text-muted-foreground">
                       <span>₹50K</span>
@@ -158,7 +159,7 @@ export function EMICalculatorSection() {
                   <div className="space-y-3">
                     <div className="flex justify-between items-center">
                       <label className="text-sm font-medium text-black">Interest Rate (p.a.)</label>
-                      <span className="text-sm font-semibold" style={{ color: '#196b92' }}>
+                      <span className="text-sm font-semibold text-blue-700">
                         {interestRate}%
                       </span>
                     </div>
@@ -170,6 +171,7 @@ export function EMICalculatorSection() {
                       value={interestRate}
                       onChange={(e) => setInterestRate(Number(e.target.value))}
                       className="w-full"
+                      aria-label="Interest Rate"
                     />
                     <div className="flex justify-between text-xs text-muted-foreground">
                       <span>5%</span>
@@ -181,7 +183,7 @@ export function EMICalculatorSection() {
                   <div className="space-y-3">
                     <div className="flex justify-between items-center">
                       <label className="text-sm font-medium text-black">Tenure (months)</label>
-                      <span className="text-sm font-semibold" style={{ color: '#196b92' }}>
+                      <span className="text-sm font-semibold text-blue-700">
                         {tenure} months ({Math.floor(tenure / 12)}y {tenure % 12}m)
                       </span>
                     </div>
@@ -193,6 +195,7 @@ export function EMICalculatorSection() {
                       value={tenure}
                       onChange={(e) => setTenure(Number(e.target.value))}
                       className="w-full"
+                      aria-label="Loan Tenure"
                     />
                     <div className="flex justify-between text-xs text-muted-foreground">
                       <span>6 months</span>
@@ -270,7 +273,7 @@ export function EMICalculatorSection() {
                     </div>
                   </div>
 
-                  <a href="#cta">
+                  <a href="/#quick-enquiry-form">
                     <Button className="w-full bg-white text-[#196b92] hover:bg-white/90 mt-4">
                       Apply for {selectedLoan.name}
                     </Button>

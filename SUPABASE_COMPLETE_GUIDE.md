@@ -5,6 +5,7 @@
 1. **PAN Number Field**: Removed restrictive pattern validation that was blocking input
 2. **API Handler**: Updated to properly accept and send `pan_number` to Supabase
 3. **Database Integration**: API now sends PAN number as `pan_number` field to Supabase
+4. **Chatbot Tables**: Added Row Level Security policies for `instant_quote_leads` and `support_requests` tables
 
 ## 🔧 Complete Supabase Setup Steps
 
@@ -90,6 +91,14 @@ CREATE TRIGGER update_contact_submissions_updated_at
 5. Click **Run** (or press Ctrl+Enter)
 6. You should see: `Success. No rows returned` - This is normal!
 
+### Step 4: Set Up Chatbot Tables
+1. Go to your Supabase Dashboard
+2. Click **SQL Editor** (left sidebar)
+3. Click **New Query**
+4. Copy the entire script from `SUPABASE_CHATBOT_TABLES.sql` and paste it
+5. Click **Run**
+6. You should see: `Success. No rows returned` - This is normal!
+
 ## ✅ Verify Setup
 
 ### Check 1: Table Created
@@ -131,16 +140,14 @@ In your Supabase Dashboard:
 - Run the full SQL script again (some parts might have failed silently)
 - Check Supabase logs: Dashboard → Logs → API
 
-### Problem: "Missing required fields" error
-**Solution:**
-Make sure you filled in:
-- ✅ Full Name
-- ✅ Phone Number
-- ✅ Email Address
-- ✅ Loan Type
-- ✅ Required Amount
+### Problem: Chatbot not saving data to Supabase
+**Error:** "We're having trouble processing your request."
 
-PAN Number is optional and can be left blank.
+**Solution:**
+1. ✅ Run the chatbot tables SQL script from `SUPABASE_CHATBOT_TABLES.sql`
+2. ✅ Ensure RLS policies are created for `instant_quote_leads` and `support_requests`
+3. ✅ Check Supabase logs: Dashboard → Logs → API for detailed errors
+4. ✅ Verify the chatbot is sending required fields (name, phone, serviceType)
 
 ## 📊 View Your Data
 

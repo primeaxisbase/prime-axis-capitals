@@ -59,7 +59,7 @@ export function HowItWorksSection() {
           {/* Connection line - desktop only */}
           <div className="hidden lg:block absolute top-24 left-[12%] right-[12%] h-0.5 bg-gradient-to-r from-[#196b92] via-[#1b94cb] to-[#38b2ac]" />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             {steps.map((step, index) => (
               <motion.div
                 key={step.step}
@@ -73,24 +73,22 @@ export function HowItWorksSection() {
                   {/* Step number with icon */}
                   <div className="relative mb-6">
                     <div 
-                      className="w-20 h-20 rounded-full flex items-center justify-center shadow-lg"
-                      style={{ background: 'linear-gradient(135deg, #196b92 0%, #1b94cb 100%)' }}
+                      className="w-20 h-20 rounded-full flex items-center justify-center shadow-lg bg-gradient-to-br from-blue-700 to-blue-500"
                     >
                       <step.icon className="h-8 w-8 text-white" />
                     </div>
                     <div 
-                      className="absolute -top-2 -right-2 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm shadow"
-                      style={{ background: '#1b94cb' }}
+                      className="absolute -top-2 -right-2 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm shadow bg-blue-500"
                     >
                       {step.step}
                     </div>
                   </div>
 
                   {/* Content */}
-                  <h3 className="font-[var(--font-playfair)] text-xl font-semibold text-black mb-2">
+                  <h3 className="font-[var(--font-playfair)] text-lg md:text-xl font-semibold text-black mb-2">
                     {step.title}
                   </h3>
-                  <p className="text-muted-foreground max-w-xs">
+                  <p className="text-muted-foreground text-sm md:text-base max-w-xs">
                     {step.description}
                   </p>
                 </div>

@@ -50,6 +50,27 @@
   --color-black: #000000;
 }
 
+/* Custom utility classes */
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #196b92 0%, #1b94cb 50%, #38b2ac 100%);
+}
+
+.bg-gradient-primary-simple {
+  background: linear-gradient(135deg, #196b92 0%, #1b94cb 100%);
+}
+
+.bg-light-blue {
+  background: #f0f7fb;
+}
+
+.text-primary-dark {
+  color: #196b92;
+}
+
+.bg-primary-light {
+  background: #1b94cb;
+}
+
 :root {
   --radius: 0.625rem;
   --background: #FFFFFF;

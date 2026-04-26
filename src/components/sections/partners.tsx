@@ -1,21 +1,23 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 
 const partners = [
-  { name: "State Bank of India", shortName: "SBI" },
-  { name: "HDFC Bank", shortName: "HDFC" },
-  { name: "ICICI Bank", shortName: "ICICI" },
-  { name: "Axis Bank", shortName: "Axis" },
-  { name: "Kotak Mahindra Bank", shortName: "Kotak" },
-  { name: "Bank of Baroda", shortName: "BOB" },
-  { name: "Punjab National Bank", shortName: "PNB" },
-  { name: "IndusInd Bank", shortName: "IndusInd" },
-  { name: "Yes Bank", shortName: "Yes" },
-  { name: "Federal Bank", shortName: "Federal" },
-  { name: "IDFC First Bank", shortName: "IDFC" },
-  { name: "RBL Bank", shortName: "RBL" },
+  { name: "State Bank of India", shortName: "SBI", slug: "sbi", logo: "/images/bank-logo/SBI.jpeg" },
+  { name: "HDFC Bank", shortName: "HDFC", slug: "hdfc", logo: "/images/bank-logo/HDFC.png" },
+  { name: "ICICI Bank", shortName: "ICICI", slug: "icici", logo: "/images/bank-logo/ICICI.png" },
+  { name: "Axis Bank", shortName: "Axis", slug: "axis", logo: "/images/bank-logo/Axis.png" },
+  { name: "Kotak Mahindra Bank", shortName: "Kotak", slug: "kotak", logo: "/images/bank-logo/Kotak.png" },
+  { name: "Bank of Baroda", shortName: "BOB", slug: "bob", logo: "/images/bank-logo/BOB.jpeg" },
+  { name: "Punjab National Bank", shortName: "PNB", slug: "pnb", logo: "/images/bank-logo/PNB.png" },
+  { name: "IndusInd Bank", shortName: "IndusInd", slug: "induslnd", logo: "/images/bank-logo/Indus.jpeg" },
+  { name: "Yes Bank", shortName: "Yes", slug: "yes", logo: "/images/bank-logo/Yes.jpeg" },
+  { name: "Federal Bank", shortName: "Federal", slug: "federal", logo: "/images/bank-logo/Federal.jpeg" },
+  { name: "IDFC First Bank", shortName: "IDFC", slug: "idfc", logo: "/images/bank-logo/IDFC.png" },
+  { name: "RBL Bank", shortName: "RBL", slug: "rbl", logo: "/images/bank-logo/RBL.png" },
 ];
 
 export function PartnersSection() {
@@ -50,26 +52,47 @@ export function PartnersSection() {
           className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6"
         >
           {partners.map((partner, index) => (
-            <motion.div
-              key={partner.name}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
-              className="group"
-            >
-              <div className="aspect-square rounded-xl border border-border/50 bg-white flex flex-col items-center justify-center p-4 hover:border-[#1b94cb]/30 hover:shadow-lg transition-all duration-300 cursor-pointer">
-                <div 
-                  className="text-2xl md:text-3xl font-bold mb-2 group-hover:scale-110 transition-transform duration-300"
-                  style={{ color: '#196b92' }}
-                >
-                  {partner.shortName}
+            <Link href={`/partners/${partner.slug}`} key={partner.name}>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                className="group"
+              >
+                <div className="aspect-square rounded-xl border border-border/50 bg-white flex flex-col items-center justify-center p-4 hover:border-[#1b94cb]/30 hover:shadow-lg transition-all duration-300 cursor-pointer overflow-hidden">
+                  {/* Logo if available */}
+                  <div className="relative w-full h-16 flex items-center justify-center group-hover:-translate-y-1 transition-transform duration-300">
+                    <Image
+                      src={partner.logo}
+                      alt={partner.name}
+                      width={100}
+                      height={60}
+                      className="h-full w-auto object-contain max-w-full transition-transform duration-300"
+                      loading="lazy"
+                      onError={(e) => {
+                        // Fallback to shortName if image fails to load
+                        e.currentTarget.style.display = "none";
+                        const fallback = document.getElementById(`fallback-${partner.slug}`);
+                        if (fallback) {
+                          fallback.style.display = "block";
+                        }
+                      }}
+                    />
+                    <div
+                      className="text-2xl md:text-3xl font-bold text-[#1b94cb] text-center"
+                      id={`fallback-${partner.slug}`}
+                      style={{ display: 'none' }}
+                    >
+                      {partner.shortName}
+                    </div>
+                  </div>
+                  <div className="text-xs text-muted-foreground text-center leading-tight mt-2">
+                    {partner.name}
+                  </div>
                 </div>
-                <div className="text-xs text-muted-foreground text-center leading-tight group-hover:text-[#196b92] transition-colors">
-                  {partner.name}
-                </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </Link>
           ))}
         </motion.div>
 

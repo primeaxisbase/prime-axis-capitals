@@ -5,29 +5,30 @@ import Image from "next/image";
 import { Facebook, MessageCircle, Linkedin, Instagram, ArrowUp, MapPin, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { PageType } from "@/app/page";
+import { SupportFormDialog } from "@/components/ui/support-form-dialog";
+import type { PageType } from "@/app/page";
 
 interface FooterProps {
-  onNavigate: (page: PageType) => void;
+  onNavigate?: (page: PageType) => void;
 }
 
 const footerColumns = [
   {
     title: "Loan Products",
     links: [
-      { name: "Personal Loan", href: "#services" },
-      { name: "Home Loan", href: "#services" },
-      { name: "Business Loan", href: "#services" },
-      { name: "Loan Against Property", href: "#services" },
+      { name: "Personal Loan", href: "/services/personal-loan" },
+      { name: "Home Loan", href: "/services/home-loan" },
+      { name: "Business Loan", href: "/services/business-loan" },
+      { name: "Loan Against Property", href: "/services/loan-against-property" },
     ],
   },
   {
     title: "Services",
     links: [
-      { name: "Credit Card Assistance", href: "#services" },
-      { name: "Accounting Service", href: "#services" },
-      { name: "GST Filing", href: "#services" },
-      { name: "Income Tax Filing", href: "#services" },
+      { name: "Credit Card Assistance", href: "/services/credit-card-assistance" },
+      { name: "Accounting Service", href: "/services/accounting-service" },
+      { name: "GST Filing", href: "/services/gst-filing" },
+      { name: "Income Tax Filing", href: "/services/income-tax-filing" },
     ],
   },
   {
@@ -35,19 +36,18 @@ const footerColumns = [
     links: [
       { name: "About Us", href: "/about" },
       { name: "Careers", href: "/careers" },
-      { name: "Press", href: "/press" },
-      { name: "Partners", href: "#partners" },
-      { name: "Contact", href: "#cta" },
+      { name: "Partners", href: "/#partners" },
+      { name: "Contact", href: "/#quick-enquiry-form" },
     ],
   },
   {
     title: "Resources",
     links: [
-      { name: "EMI Calculator", href: "#emi-calculator" },
-      { name: "Eligibility Check", href: "#cta" },
+      { name: "EMI Calculator", href: "/#emi-calculator" },
+      { name: "Eligibility Check", href: "/#cta" },
       { name: "Blog", href: "/blog" },
-      { name: "FAQs", href: "#faq" },
-      { name: "Customer Support", href: "#cta" },
+      { name: "FAQs", href: "/#faq" },
+      { name: "Customer Support", href: "/#cta" },
     ],
   },
   {
@@ -62,10 +62,10 @@ const footerColumns = [
 ];
 
 const socialLinks = [
-  { name: "Facebook", icon: Facebook, href: "https://facebook.com" },
+  { name: "Facebook", icon: Facebook, href: "https://www.facebook.com/profile.php?id=61563115075536" },
   { name: "WhatsApp", icon: MessageCircle, href: "https://wa.me/message/LX2MQXDN2GJHA1?src=qr" },
-  { name: "LinkedIn", icon: Linkedin, href: "https://linkedin.com" },
-  { name: "Instagram", icon: Instagram, href: "https://instagram.com" },
+  { name: "LinkedIn", icon: Linkedin, href: "http://www.linkedin.com/in/prime-axis-capital-1399b93bb" },
+  { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/prime.axiscapital?igsh=MTM5aW9hcG80ejB4bg%3D%3D&utm_source=qr" },
 ];
 
 export function Footer({ onNavigate }: FooterProps) {
@@ -74,7 +74,7 @@ export function Footer({ onNavigate }: FooterProps) {
   };
 
   return (
-    <footer className="mt-auto" style={{ background: 'linear-gradient(135deg, #196b92 0%, #1b94cb 100%)' }}>
+    <footer id="footer" className="mt-auto bg-gradient-primary">
       {/* Main footer */}
       <div className="container mx-auto px-4 py-12 md:py-16">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-8">
@@ -143,14 +143,26 @@ export function Footer({ onNavigate }: FooterProps) {
                 {column.title}
               </h3>
               <ul className="space-y-2">
-                {column.links.map((link) => (
+      {column.links.map((link) => (
                   <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-white/70 hover:text-white transition-colors"
-                    >
-                      {link.name}
-                    </Link>
+                    {link.name === "Customer Support" ? (
+                      <SupportFormDialog
+                        trigger={
+                          <button className="text-sm text-white/70 hover:text-white transition-colors text-left">
+                            {link.name}
+                          </button>
+                        }
+                        title="Contact Support"
+                        description="Get in touch with our support team."
+                      />
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className="text-sm text-white/70 hover:text-white transition-colors"
+                      >
+                        {link.name}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -175,7 +187,7 @@ export function Footer({ onNavigate }: FooterProps) {
           {/* Right section with name and button */}
           <div className="flex items-center gap-3">
             <p className="text-sm text-white/70 font-bold">
-             Owned By Tushar Rajput
+             Arc
             </p>
             {/* Back to top button */}
             <Button

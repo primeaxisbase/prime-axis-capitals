@@ -11,34 +11,42 @@ import { Badge } from "@/components/ui/badge";
 
 const faqs = [
   {
-    question: "What documents are required for a personal loan?",
-    answer: "You'll need: (1) PAN Card and Aadhaar Card, (2) Last 3 months' salary slips or 2 years' ITR for self-employed, (3) Last 6 months' bank statements, (4) Proof of address. Additional documents may be requested based on your profile.",
+    question: "How can I get a personal loan in Delhi NCR?",
+    answer: "You can apply online with basic documents like Aadhaar, PAN, and income proof. Approval is quick and hassle-free.",
   },
   {
-    question: "How is my loan eligibility calculated?",
-    answer: "Eligibility depends on your income, existing EMIs, credit score, employment history, and age. Generally, you can get a loan where your EMI is up to 40-50% of your monthly income after deducting existing obligations.",
+    question: "Do you provide business loans without collateral?",
+    answer: "Yes, we offer unsecured business loans for MSMEs and startups with flexible repayment options.",
   },
   {
-    question: "Are there any hidden charges?",
-    answer: "No. We believe in complete transparency. All charges including processing fee, interest rate, prepayment charges, and any other fees are clearly mentioned in your loan agreement before you sign.",
+    question: "What documents are required for GST filing?",
+    answer: "Basic documents include GSTIN, invoices, and bank details. Our experts handle the complete process.",
   },
   {
-    question: "Can I prepay my loan?",
-    answer: "Yes, you can prepay your loan partially or fully. For floating rate loans, there are no prepayment charges. For fixed rate personal loans, a nominal prepayment fee may apply after 12 months of regular EMI payments.",
+    question: "Which is the best credit card in India?",
+    answer: "The best credit card depends on your needs like cashback, travel, or shopping benefits. We help you choose the best credit card based on your needs.",
   },
   {
-    question: "What is the minimum and maximum loan amount?",
-    answer: "For personal loans, you can borrow from ₹50,000 to ₹50 Lakhs. For home loans, the range is ₹10 Lakhs to ₹5 Crores. Business loans start from ₹1 Lakh up to ₹20 Crores. Final amount depends on your eligibility.",
+    question: "Do you provide GST and accounting services in Delhi?",
+    answer: "Yes, we offer GST filing, bookkeeping, and accounting services for businesses and individuals in Delhi NCR.",
   },
   {
-    question: "How long does the approval process take?",
-    answer: "Once all documents are submitted, approval typically takes 0-24 working hours. After approval, disbursement happens within 24-48 hours. Some pre-approved customers get instant disbursement.",
+    question: "Can I get a business loan without collateral?",
+    answer: "Yes, unsecured business loans are available for eligible applicants based on income, business profile, and eligibility criteria.",
+  },
+  {
+    question: "Can I get a personal loan with low CIBIL score?",
+    answer: "Yes, we provide loan options even for customers with lower credit scores.",
+  },
+  {
+    question: "How long does approval take?",
+    answer: "Most applications are approved within 24-48 hours.",
   },
 ];
 
 export function FAQSection() {
   return (
-    <section id="faq" className="py-16 md:py-24" style={{ background: '#f0f7fb' }}>
+    <section id="faq" className="py-16 md:py-24 bg-blue-50">
       <div className="container mx-auto px-4">
         {/* Section header */}
         <motion.div

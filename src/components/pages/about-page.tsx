@@ -56,29 +56,6 @@ export function AboutPage() {
     },
   ];
 
-  const timeline = [
-    {
-      year: "2020",
-      title: "Founded",
-      description: "Prime Axis Capitals was established with a mission to democratize financial services."
-    },
-    {
-      year: "2021",
-      title: "Expansion",
-      description: "Expanded operations across major Indian cities with 50+ partnerships."
-    },
-    {
-      year: "2023",
-      title: "Innovation",
-      description: "Launched digital platform with EMI calculator and online applications."
-    },
-    {
-      year: "2026",
-      title: "Growth",
-      description: "Serving 10,000+ satisfied customers with diversified financial products."
-    },
-  ];
-
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -183,8 +160,7 @@ export function AboutPage() {
                   variants={fadeInUp}
                 >
                   <div
-                    className="w-12 h-12 rounded-full mb-4 flex items-center justify-center"
-                    style={{ background: '#1b94cb' }}
+                    className="w-12 h-12 rounded-full mb-4 flex items-center justify-center bg-blue-500"
                   >
                     <Icon className="w-6 h-6 text-white" />
                   </div>
@@ -197,55 +173,6 @@ export function AboutPage() {
                 </motion.div>
               );
             })}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Timeline */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <motion.div
-            className="text-center mb-16"
-            variants={fadeInUp}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 font-[var(--font-playfair)]">
-              Our Journey
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              From our founding to today, we've grown to serve thousands of satisfied customers.
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="grid md:grid-cols-4 gap-8"
-            variants={containerVariants}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
-            {timeline.map((item, index) => (
-              <motion.div
-                key={index}
-                className="text-center"
-                variants={fadeInUp}
-              >
-                <div
-                  className="inline-block px-4 py-2 rounded-full text-white font-bold mb-4"
-                  style={{ background: '#1b94cb' }}
-                >
-                  {item.year}
-                </div>
-                <h3 className="text-xl font-bold mb-2 font-[var(--font-playfair)]">
-                  {item.title}
-                </h3>
-                <p className="text-muted-foreground text-sm">
-                  {item.description}
-                </p>
-              </motion.div>
-            ))}
           </motion.div>
         </div>
       </section>
@@ -309,12 +236,12 @@ export function AboutPage() {
               Let our expert advisors help you find the perfect financial solution for your needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="https://wa.me/message/LX2MQXDN2GJHA1?src=qr" target="_blank" rel="noopener noreferrer">
+              <a href="tel:+917428614189">
                 <Button className="bg-gradient-primary hover:opacity-90 text-white w-full sm:w-auto">
                   Talk to an Advisor
                 </Button>
               </a>
-              <Link href="#cta">
+              <Link href="/#quick-enquiry-form">
                 <Button variant="outline" className="w-full sm:w-auto">
                   Apply Now
                 </Button>

@@ -7,6 +7,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { useToast } from "@/hooks/use-toast";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Select,
   SelectContent,
@@ -14,9 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import { useToast } from "@/hooks/use-toast";
+import { SupportFormDialog } from "@/components/ui/support-form-dialog";
 
 const loanTypes = [
   "Personal Loan",
@@ -88,7 +89,7 @@ export function CTASection({ selectedLoanType }: CTASectionProps) {
   };
 
   return (
-    <section id="cta" className="py-16 md:py-24 bg-gradient-to-br from-white via-[#f0f7fb] to-white">
+    <section id="quick-enquiry-form" className="py-16 md:py-24 bg-gradient-to-br from-white via-[#f0f7fb] to-white scroll-mt-20">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left content */}
@@ -111,8 +112,8 @@ export function CTASection({ selectedLoanType }: CTASectionProps) {
             {/* Contact info */}
             <div className="space-y-4 mb-8">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#e0f2fe' }}>
-                  <Phone className="h-5 w-5" style={{ color: '#196b92' }} />
+                <div className="w-12 h-12 rounded-full flex items-center justify-center bg-blue-50">
+                  <Phone className="h-5 w-5 text-blue-700" />
                 </div>
                 <div>
                   <div className="text-sm text-muted-foreground">Call us</div>
@@ -120,8 +121,8 @@ export function CTASection({ selectedLoanType }: CTASectionProps) {
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#e0f2fe' }}>
-                  <Mail className="h-5 w-5" style={{ color: '#196b92' }} />
+                <div className="w-12 h-12 rounded-full flex items-center justify-center bg-blue-50">
+                  <Mail className="h-5 w-5 text-blue-700" />
                 </div>
                 <div>
                   <div className="text-sm text-muted-foreground">Email us</div>
@@ -129,8 +130,8 @@ export function CTASection({ selectedLoanType }: CTASectionProps) {
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#e0f2fe' }}>
-                  <Clock className="h-5 w-5" style={{ color: '#196b92' }} />
+                <div className="w-12 h-12 rounded-full flex items-center justify-center bg-blue-50">
+                  <Clock className="h-5 w-5 text-blue-700" />
                 </div>
                 <div>
                   <div className="text-sm text-muted-foreground">Working hours</div>
@@ -146,11 +147,15 @@ export function CTASection({ selectedLoanType }: CTASectionProps) {
                   Calculate Your EMI
                 </Button>
               </a>
-              <a href="https://wa.me/message/LX2MQXDN2GJHA1?src=qr" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" variant="outline" className="border-[#196b92] text-[#196b92] hover:bg-[#196b92]/10">
-                  Schedule a Callback
-                </Button>
-              </a>
+              <SupportFormDialog
+                trigger={
+                  <Button size="lg" variant="outline" className="border-[#196b92] text-[#196b92] hover:bg-[#196b92]/10">
+                    Schedule a Callback
+                  </Button>
+                }
+                title="Schedule a Callback"
+                description="We'll call you back within 24 hours to discuss your requirements."
+              />
             </div>
           </motion.div>
 
@@ -161,12 +166,12 @@ export function CTASection({ selectedLoanType }: CTASectionProps) {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <Card className="bg-white shadow-xl border-border/50">
+            <Card id="quick-enquiry-card" className="bg-white shadow-xl border-border/50">
               <CardContent className="p-6 md:p-8">
                 {isSubmitted ? (
                   <div className="text-center py-12">
-                    <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#e0f2fe' }}>
-                      <CheckCircle2 className="h-8 w-8" style={{ color: '#196b92' }} />
+                    <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-blue-50">
+                      <CheckCircle2 className="h-8 w-8 text-blue-700" />
                     </div>
                     <h3 className="font-[var(--font-playfair)] text-2xl font-bold text-black mb-2">
                       Thank You!

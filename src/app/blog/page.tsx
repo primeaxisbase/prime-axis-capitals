@@ -3,9 +3,10 @@
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { BlogPage } from "@/components/pages/blog-page";
+import { PageType } from "../page";
 
 export default function Blog() {
-  const handleNavigate = (page: string) => {
+  const handleNavigate = (page: PageType) => {
     window.location.href = page === "home" ? "/" : `/${page}`;
   };
 

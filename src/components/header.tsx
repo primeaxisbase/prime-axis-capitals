@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Menu, X, Phone, Mail, ChevronDown, Calculator } from "lucide-react";
+import { Menu, X, Phone, Mail, ChevronDown, Calculator, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -13,6 +13,7 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 import { PageType } from "@/app/page";
+import { useNavigation } from "@/hooks/use-navigation";
 
 interface HeaderProps {
   onNavigate: (page: PageType) => void;
@@ -24,16 +25,39 @@ const navItems = [
   { name: "How It Works", href: "#how-it-works" },
   { name: "EMI Calculator", href: "#emi-calculator" },
   { name: "FAQs", href: "#faq" },
-  { name: "Contact", href: "#cta" },
+  { name: "Contact", href: "#quick-enquiry-form" },
 ];
 
 export function Header({ onNavigate }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [showBackButton, setShowBackButton] = useState(false);
+  const { goBack } = useNavigation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show back button after scrolling down from hero section (approximately 600px)
+      setShowBackButton(window.scrollY > 600);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleLogoClick = (e: React.MouseEvent) => {
     e.preventDefault();
     // Navigate to home page
     window.location.href = "/";
+  };
+
+  const handleBackButton = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    // If on homepage, scroll to top; otherwise go back
+    if (window.location.pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      goBack();
+    }
   };
 
   return (
@@ -60,8 +84,8 @@ export function Header({ onNavigate }: HeaderProps) {
       {/* Main navigation */}
       <div className="container mx-auto px-4">
         <div className="flex h-20 items-center justify-between">
-          {/* Logo */}
-          <div className="flex items-center gap-4">
+          {/* Logo and Company Name */}
+          <div className="flex items-center gap-2 sm:gap-4">
             <button
               onClick={handleLogoClick}
               className="flex items-center gap-1 hover:opacity-80 transition-opacity cursor-pointer"
@@ -75,20 +99,34 @@ export function Header({ onNavigate }: HeaderProps) {
                 sizes="(max-width: 768px) 100px, 120px"
                 priority
               />
-              <span className="hidden sm:inline font-[var(--font-playfair)] text-2xl font-bold" style={{ color: '#1b94cb' }}>
-                Prime Axis Capital
-              </span>
+            <span className="hidden sm:inline font-[var(--font-playfair)] text-2xl font-bold text-[#1b94cb]">
+              Prime Axis Capital
+            </span>
+            {/* Mobile company name - shown only on small screens */}
+            <span className="inline sm:hidden font-[var(--font-playfair)] text-xs font-bold text-[#1b94cb] ml-1">
+              Prime Axis Capital
+            </span>
             </button>
             
-            {/* Back to Home button */}
-            <Link href="/">
-              <Button variant="outline" size="sm" className="hidden md:flex items-center gap-2">
-                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                </svg>
-                Back to Home
-              </Button>
-            </Link>
+            {/* Back button - show when scrolled past hero */}
+            {showBackButton && (
+              <motion.div
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -10 }}
+                className="hidden md:block"
+              >
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="flex items-center gap-2"
+                  onClick={handleBackButton}
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                  Back
+                </Button>
+              </motion.div>
+            )}
           </div>
 
           {/* Desktop Navigation */}
@@ -106,16 +144,16 @@ export function Header({ onNavigate }: HeaderProps) {
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center gap-3">
-            <a href="https://wa.me/message/LX2MQXDN2GJHA1?src=qr" target="_blank" rel="noopener noreferrer">
+            <a href="tel:+917428614189">
               <Button variant="outline" className="border-[#196b92] text-[#196b92] hover:bg-[#196b92]/10">
                 Talk to an Advisor
               </Button>
             </a>
-            <Link href="#cta">
-              <Button className="bg-gradient-primary hover:opacity-90 text-white">
+            <Button asChild className="bg-gradient-primary hover:opacity-90 text-white">
+              <Link href="/#quick-enquiry-form">
                 Apply Now
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </div>
 
           {/* Mobile Menu */}
@@ -142,7 +180,7 @@ export function Header({ onNavigate }: HeaderProps) {
                       sizes="(max-width: 768px) 140px, 260px"
                       priority
                     />
-                    <span className="font-[var(--font-playfair)] text-xl font-bold" style={{ color: '#1b94cb' }}>
+                    <span className="font-[var(--font-playfair)] text-xl font-bold text-[#1b94cb]">
                       Prime Axis Capital
                     </span>
                   </button>
@@ -164,20 +202,20 @@ export function Header({ onNavigate }: HeaderProps) {
                 <div className="mt-auto flex flex-col gap-4 pt-8 border-t border-border">
                   <div className="flex items-center gap-2 text-sm text-muted-foreground px-4">
                     <Phone className="h-4 w-4" style={{ color: '#1b94cb' }} />
-                    <span>+91 74286 14189</span>
+                    <span>+91 74286 1418</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm text-muted-foreground px-4">
                     <Mail className="h-4 w-4" style={{ color: '#1b94cb' }} />
                     <span>info@primeaxiscapital.in</span>
                   </div>
                   <SheetClose asChild>
-                    <Link href="#cta">
-                      <Button className="bg-gradient-primary hover:opacity-90 text-white w-full mt-4">
+                    <Button asChild className="bg-gradient-primary hover:opacity-90 text-white w-full mt-4">
+                      <Link href="/#quick-enquiry-form">
                         Apply Now
-                      </Button>
-                    </Link>
+                      </Link>
+                    </Button>
                   </SheetClose>
-                  <a href="https://wa.me/message/LX2MQXDN2GJHA1?src=qr" target="_blank" rel="noopener noreferrer" className="w-full">
+                  <a href="tel:+917428614189" className="w-full">
                     <Button variant="outline" className="border-[#196b92] text-[#196b92] w-full">
                       Talk to an Advisor
                     </Button>

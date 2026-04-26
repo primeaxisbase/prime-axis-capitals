@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { 
   UserCheck, 
@@ -8,9 +9,9 @@ import {
   Building,
   CreditCard,
   Calculator,
-  Receipt,
-  DollarSign,
-  ArrowRight 
+  ArrowRight,
+  FileCheck,
+  IndianRupee
 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -27,6 +28,7 @@ const services = [
     features: ["Interest from 9.9% p.a.", "1-7 years tenure", "No collateral required"],
     icon: UserCheck,
     id: "personal-loan",
+    slug: "personal-loan",
   },
   {
     name: "Home Loans",
@@ -34,6 +36,7 @@ const services = [
     features: ["Interest from 8.35% p.a.", "Up to 30 years tenure", "Quick sanction"],
     icon: Home,
     id: "home-loan",
+    slug: "home-loan",
   },
   {
     name: "Business Loans",
@@ -41,6 +44,7 @@ const services = [
     features: ["Interest from 12% p.a.", "Flexible repayment", "Minimal documentation"],
     icon: Briefcase,
     id: "business-loan",
+    slug: "business-loan",
   },
   {
     name: "Loan Against Property",
@@ -48,6 +52,7 @@ const services = [
     features: ["Interest from 9.5% p.a.", "Up to 20 years tenure", "High loan amount"],
     icon: Building,
     id: "loan-against-property",
+    slug: "loan-against-property",
   },
   {
     name: "Credit Card Assistance",
@@ -55,6 +60,7 @@ const services = [
     features: ["Zero annual fees", "High credit limit", "Exclusive rewards & cashback"],
     icon: CreditCard,
     id: "credit-card-assistance",
+    slug: "credit-card-assistance",
   },
   {
     name: "Accounting Service",
@@ -62,20 +68,23 @@ const services = [
     features: ["Monthly reconciliation", "Financial reporting", "Expert consultation"],
     icon: Calculator,
     id: "accounting-service",
+    slug: "accounting-service",
   },
   {
     name: "GST Filing",
     description: "Hassle-free GST compliance and filing services to keep your business compliant and audit-ready.",
     features: ["Monthly GST returns", "ITC optimization", "Dedicated support"],
-    icon: Receipt,
+    icon: FileCheck,
     id: "gst-filing",
+    slug: "gst-filing",
   },
   {
     name: "Income Tax Filing",
     description: "Expert income tax filing and planning services to minimize your tax liability legally and efficiently.",
     features: ["Expert guidance", "Maximum deductions", "Quick processing"],
-    icon: DollarSign,
+    icon: IndianRupee,
     id: "income-tax-filing",
+    slug: "income-tax-filing",
   },
 ];
 
@@ -131,45 +140,44 @@ export function ServicesSection({ onLoanSelect }: ServicesSectionProps) {
         >
           {services.map((service) => (
             <motion.div key={service.name} variants={itemVariants}>
-              <Card 
-                className="h-full hover:shadow-xl transition-all duration-300 border-border/50 group cursor-pointer hover:border-[#1b94cb]/30"
-                onClick={() => onLoanSelect(service.name)}
-              >
-                <CardHeader>
-                  <div 
-                    className="w-14 h-14 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
-                    style={{ backgroundColor: '#e0f2fe' }}
-                  >
-                    <service.icon className="h-7 w-7" style={{ color: '#196b92' }} />
-                  </div>
-                  <CardTitle className="font-[var(--font-playfair)] text-xl text-black group-hover:text-[#196b92] transition-colors">
-                    {service.name}
-                  </CardTitle>
-                  <CardDescription className="text-muted-foreground">
-                    {service.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2 mb-4">
-                    {service.features.map((feature) => (
-                      <li key={feature} className="flex items-center gap-2 text-sm">
-                        <div className="w-1.5 h-1.5 rounded-full" style={{ background: '#1b94cb' }} />
-                        <span className="text-muted-foreground">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button 
-                    className="w-full bg-gradient-primary hover:opacity-90 text-white"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onLoanSelect(service.name);
-                    }}
-                  >
-                    Apply Now
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </CardContent>
-              </Card>
+              <Link href={`/services/${service.slug}`}>
+                <Card 
+                  className="h-full hover:shadow-xl transition-all duration-300 border-border/50 group cursor-pointer hover:border-[#1b94cb]/30"
+                >
+                  <CardHeader>
+                    <div 
+                      className="w-14 h-14 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 bg-blue-50"
+                    >
+                      <service.icon className="h-7 w-7 text-blue-700" />
+                    </div>
+                    <CardTitle className="font-[var(--font-playfair)] text-xl text-black group-hover:text-[#196b92] transition-colors">
+                      {service.name}
+                    </CardTitle>
+                    <CardDescription className="text-muted-foreground">
+                      {service.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2 mb-4">
+                      {service.features.map((feature) => (
+                        <li key={feature} className="flex items-center gap-2 text-sm">
+                          <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                          <span className="text-muted-foreground">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <Button 
+                      className="w-full bg-gradient-primary hover:opacity-90 text-white"
+                      onClick={(e) => {
+                        e.preventDefault();
+                      }}
+                    >
+                      Learn More
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </CardContent>
+                </Card>
+              </Link>
             </motion.div>
           ))}
         </motion.div>

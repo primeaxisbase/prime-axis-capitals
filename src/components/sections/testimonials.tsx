@@ -65,7 +65,7 @@ export function TestimonialsSection() {
         </motion.div>
 
         {/* Testimonials grid */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 gap-4 md:gap-6">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.name}
@@ -76,39 +76,41 @@ export function TestimonialsSection() {
             >
               <Card className="h-full bg-white border-border/50 hover:shadow-lg transition-all duration-300 relative overflow-hidden">
                 {/* Quote icon */}
-                <div className="absolute top-4 right-4 opacity-10">
-                  <Quote className="h-16 w-16" style={{ color: '#196b92' }} />
+                <div className="absolute top-2 right-2 md:top-4 md:right-4 opacity-10">
+                  <Quote className="h-8 w-8 md:h-16 md:w-16" style={{ color: '#196b92' }} />
                 </div>
                 
-                <CardContent className="p-6">
+                <CardContent className="p-3 md:p-6">
                   {/* Rating */}
-                  <div className="flex gap-1 mb-4">
+                  <div className="flex gap-1 mb-2 md:mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <Star
                         key={i}
-                        className="h-5 w-5 fill-current"
+                        className="h-3 w-3 md:h-5 md:w-5 fill-current"
                         style={{ color: '#1b94cb' }}
                       />
                     ))}
                   </div>
 
                   {/* Review */}
-                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                  <p className="text-muted-foreground mb-3 md:mb-6 leading-relaxed text-xs md:text-sm">
                     &ldquo;{testimonial.review}&rdquo;
                   </p>
 
                   {/* Author */}
-                  <div className="flex items-center gap-4">
-                    <Avatar className="h-12 w-12 border-2" style={{ borderColor: '#1b94cb' }}>
-                      <AvatarFallback style={{ backgroundColor: '#e0f2fe', color: '#196b92' }} className="font-semibold">
-                        {testimonial.initials}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <div className="font-semibold text-black">{testimonial.name}</div>
-                      <div className="text-sm text-muted-foreground">{testimonial.location}</div>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                    <div className="flex items-center gap-2 flex-1 min-w-0">
+                      <Avatar className="h-8 w-8 md:h-12 md:w-12 border-2 flex-shrink-0" style={{ borderColor: '#1b94cb' }}>
+                        <AvatarFallback style={{ backgroundColor: '#e0f2fe', color: '#196b92' }} className="font-semibold text-xs md:text-sm">
+                          {testimonial.initials}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div className="flex-1 min-w-0">
+                        <div className="font-semibold text-black text-xs md:text-sm">{testimonial.name}</div>
+                        <div className="text-xs text-muted-foreground">{testimonial.location}</div>
+                      </div>
                     </div>
-                    <Badge className="ml-auto" style={{ backgroundColor: '#e0f2fe', color: '#196b92' }}>
+                    <Badge className="text-xs px-1 py-0 md:px-2 md:py-1 self-start sm:self-center flex-shrink-0" style={{ backgroundColor: '#e0f2fe', color: '#196b92' }}>
                       {testimonial.loanType}
                     </Badge>
                   </div>

@@ -22,29 +22,60 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Prime Axis Capitals - Fast Loans, Tax & Accounting, and Financial Freedom",
-  description: "Prime Axis Capitals delivers fast, transparent loan solutions, GST & income tax filing, accounting, and financial advisory for individuals and businesses across India.",
+  title: "Prime Axis Capitals - Financial Partner for Loans, Tax & Accounting Services",
+  description: "Prime Axis Capitals is your trusted financial partner connecting you with leading banks and financial institutions for personal loans, home loans, business loans, and financial services.",
   keywords: [
     "Prime Axis Capitals",
-    "Loan Provider",
+    "Financial Partner",
     "Personal Loan",
     "Home Loan",
     "Business Loan",
     "Loan Against Property",
+    "Credit Card",
     "GST Filing",
     "Income Tax Filing",
     "Accounting Services",
     "EMI Calculator",
-    "Quick Loan Approval",
+    "Quick Approval",
     "Financial Advisory",
+    "Loan Aggregator",
+    "Financial Services India",
+    "Banking Partner",
+    "Tax Consultant",
+    "GST Consultant",
+    "Business Finance",
+    "Personal Finance",
   ],
   authors: [{ name: "Prime Axis Capitals" }],
+  creator: "Prime Axis Capitals",
+  publisher: "Prime Axis Capitals",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   metadataBase: new URL("https://primeaxiscapital.in"),
   alternates: {
     canonical: "https://primeaxiscapital.in",
   },
   icons: {
     icon: "/logo.svg",
+    shortcut: "/logo.svg",
+    apple: "/logo.svg",
+  },
+  manifest: "/manifest.json",
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
   openGraph: {
     title: "Prime Axis Capitals - Fast Loans & Trusted Financial Services",
@@ -58,7 +89,7 @@ export const metadata: Metadata = {
         url: "https://primeaxiscapital.in/logo.svg",
         width: 1200,
         height: 630,
-        alt: "Prime Axis Capitals logo",
+        alt: "Prime Axis Capitals - Your Financial Partner",
       },
     ],
   },
@@ -69,6 +100,12 @@ export const metadata: Metadata = {
     creator: "@PrimeAxisCap",
     images: ["https://primeaxiscapital.in/logo.svg"],
   },
+  verification: {
+    google: "your-google-site-verification-code",
+    yandex: "your-yandex-verification-code",
+    yahoo: "your-yahoo-verification-code",
+  },
+  category: "finance",
 };
 
 export default function RootLayout({
@@ -76,8 +113,57 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "FinancialService",
+    "name": "Prime Axis Capitals",
+    "description": "Your trusted financial partner connecting you with leading banks and financial institutions for personal loans, home loans, business loans, and financial services.",
+    "url": "https://primeaxiscapital.in",
+    "logo": "https://primeaxiscapital.in/logo.svg",
+    "sameAs": [
+      "https://www.facebook.com/primeaxiscapitals",
+      "https://www.linkedin.com/company/primeaxiscapitals",
+      "https://twitter.com/PrimeAxisCap"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "IN",
+      "addressRegion": "India"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+91-7428614189",
+      "contactType": "customer service",
+      "availableLanguage": "English"
+    },
+    "serviceType": [
+      "Personal Loans",
+      "Home Loans",
+      "Business Loans",
+      "Loan Against Property",
+      "Credit Cards",
+      "GST Filing",
+      "Income Tax Filing",
+      "Accounting Services"
+    ],
+    "areaServed": "IN",
+    "priceRange": "$$"
+  };
+
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData),
+          }}
+        />
+        <meta name="msapplication-TileColor" content="#1b94cb" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
       <body
         className={`${inter.variable} ${playfair.variable} ${poppins.variable} antialiased bg-background text-foreground`}
       >

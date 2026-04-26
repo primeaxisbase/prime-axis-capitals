@@ -1,35 +1,82 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useInView } from "framer-motion";
 import { Users, IndianRupee, Star, Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { useEffect, useRef } from "react";
 
 const stats = [
   {
     value: "1000+",
     label: "Customers Served",
     icon: Users,
+    targetValue: 1000,
+    suffix: "+",
   },
   {
     value: "₹50 Cr+",
     label: "Loans Disbursed",
     icon: IndianRupee,
+    targetValue: 50,
+    prefix: "₹",
+    suffix: " Cr+",
   },
   {
     value: "4.8/5",
     label: "Customer Rating",
     icon: Star,
+    targetValue: 4.8,
+    suffix: "/5",
+    decimals: 1,
   },
   {
     value: "24 Hrs",
     label: "Average Disbursal Time",
     icon: Clock,
+    targetValue: 24,
+    suffix: " Hrs",
   },
 ];
 
+function AnimatedCounter({ 
+  targetValue, 
+  prefix = "", 
+  suffix = "", 
+  decimals = 0 
+}: { 
+  targetValue: number; 
+  prefix?: string; 
+  suffix?: string; 
+  decimals?: number; 
+}) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true });
+  const motionValue = useMotionValue(0);
+  const springValue = useSpring(motionValue, { 
+    damping: 50, 
+    stiffness: 100 
+  });
+
+  useEffect(() => {
+    if (isInView) {
+      motionValue.set(targetValue);
+    }
+  }, [isInView, motionValue, targetValue]);
+
+  useEffect(() => {
+    springValue.on("change", (latest) => {
+      if (ref.current) {
+        ref.current.textContent = prefix + latest.toFixed(decimals) + suffix;
+      }
+    });
+  }, [springValue, prefix, suffix, decimals]);
+
+  return <span ref={ref}>{prefix}0{suffix}</span>;
+}
+
 export function StatsSection() {
   return (
-    <section className="py-16 md:py-24 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #196b92 0%, #1b94cb 50%, #38b2ac 100%)' }}>
+    <section className="py-16 md:py-24 relative overflow-hidden bg-gradient-primary">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-10">
         <svg className="absolute top-0 left-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -75,7 +122,12 @@ export function StatsSection() {
                   <stat.icon className="h-7 w-7 text-white" />
                 </div>
                 <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2">
-                  {stat.value}
+                  <AnimatedCounter
+                    targetValue={stat.targetValue}
+                    prefix={stat.prefix}
+                    suffix={stat.suffix}
+                    decimals={stat.decimals}
+                  />
                 </div>
                 <div className="text-white/80 text-sm md:text-base">
                   {stat.label}

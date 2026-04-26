@@ -3,9 +3,10 @@
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { CareersPage } from "@/components/pages/careers-page";
+import { PageType } from "../page";
 
 export default function Careers() {
-  const handleNavigate = (page: string) => {
+  const handleNavigate = (page: PageType) => {
     window.location.href = page === "home" ? "/" : `/${page}`;
   };
 

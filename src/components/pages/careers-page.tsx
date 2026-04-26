@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Briefcase, Send, Loader2, CheckCircle2, MapPin, Users } from "lucide-react";
+import { Briefcase, Send, Loader2, CheckCircle2, MapPin, Users, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -17,6 +17,7 @@ import {
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
+import Link from "next/link";
 
 const jobs = [
   {
@@ -124,15 +125,26 @@ export function CareersPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <section className="pt-20 pb-12 px-4" style={{ background: '#f0f7fb' }}>
+      <section className="pt-20 pb-12 px-4 bg-blue-50">
         <div className="container mx-auto max-w-4xl">
+          <div className="mb-6">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="inline-flex items-center gap-2 text-sm text-slate-700 hover:text-slate-900"
+              onClick={() => window.location.href = '/#footer'}
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Back
+            </Button>
+          </div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="text-center"
           >
-            <Badge className="mb-4 text-white" style={{ background: '#1b94cb' }}>
+            <Badge className="mb-4 text-white bg-blue-500">
               Join Our Team
             </Badge>
             <h1 className="font-[var(--font-playfair)] text-4xl md:text-5xl font-bold text-black mb-4">
@@ -194,7 +206,7 @@ export function CareersPage() {
                       <ul className="space-y-1">
                         {job.requirements.map((req) => (
                           <li key={req} className="text-sm text-muted-foreground flex items-center gap-2">
-                            <div className="w-1.5 h-1.5 rounded-full" style={{ background: '#1b94cb' }} />
+                            <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
                             {req}
                           </li>
                         ))}
@@ -204,9 +216,11 @@ export function CareersPage() {
                     <Button 
                       className="w-full bg-gradient-to-r hover:opacity-90 text-white mt-4"
                       style={{ background: 'linear-gradient(135deg, #1b94cb 0%, #196b92 100%)' }}
-                      onClick={() => setSelectedJob(job.title)}
+                      asChild
                     >
-                      Apply Now
+                      <Link href="#application-form">
+                        Apply Now
+                      </Link>
                     </Button>
                   </CardContent>
                 </Card>
@@ -217,7 +231,7 @@ export function CareersPage() {
       </section>
 
       {/* Application Form */}
-      <section id="application-form" className="py-16 md:py-24 px-4" style={{ background: '#f0f7fb' }}>
+      <section id="application-form" className="py-16 md:py-24 px-4 bg-blue-50">
         <div className="container mx-auto max-w-2xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -5,6 +5,7 @@ import { ArrowLeft, Shield, FileText, RefreshCw, MessageSquare } from "lucide-re
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { PageType } from "@/app/page";
+import { useNavigation } from "@/hooks/use-navigation";
 
 interface LegalPageProps {
   page: PageType;
@@ -69,7 +70,7 @@ We do not sell your personal information to third parties.`,
 • Opt-out of marketing communications
 • Lodge a complaint with the data protection authority
 
-To exercise these rights, please contact us at privacy@primeaxis.in`,
+To exercise these rights, please contact us at info@primeaxiscapital.in`,
       },
       {
         heading: "6. Cookies",
@@ -80,7 +81,7 @@ To exercise these rights, please contact us at privacy@primeaxis.in`,
         content: `If you have any questions about this Privacy Policy, please contact us at:
 
 Prime Axis Capitals
-Email: privacy@primeaxis.in
+Email: info@primeaxiscapital.in
 Phone: +91 74286 14189 (Mon-Sat, 9 AM - 8 PM)
 Address: [Company Address]`,
       },
@@ -186,7 +187,7 @@ Our total liability shall not exceed the fees paid by you for our services.`,
         heading: "3. Refund Process",
         content: `To request a refund:
         
-1. Contact our customer support at refunds@primeaxis.in
+1. Contact our customer support at info@primeaxiscapital.in
 2. Provide your application reference number
 3. State the reason for the refund request
 4. Our team will review your request within 5-7 business days
@@ -223,7 +224,7 @@ Approved refunds will be processed within 10-15 business days to the original pa
         heading: "7. Contact for Refunds",
         content: `For refund-related queries:
 
-Email: refunds@primeaxis.in
+Email: info@primeaxiscapital.in
 Phone: +91 74286 14189 (Mon-Sat, 9 AM - 8 PM)
 Reference: Your application ID must be included in all communications`,
       },
@@ -235,84 +236,15 @@ Reference: Your application ID must be included in all communications`,
     lastUpdated: "January 1, 2024",
     sections: [
       {
-        heading: "1. Our Commitment",
-        content: `Prime Axis Capitals is committed to providing excellent customer service. We take all complaints seriously and aim to resolve them promptly and fairly.
-
-We have established a comprehensive grievance redressal mechanism to address customer concerns effectively.`,
-      },
-      {
-        heading: "2. How to Lodge a Complaint",
-        content: `You can register your complaint through the following channels:
-
-**Level 1 - Customer Support**
-• Email: support@primeaxis.in
+        heading: "1.  Customer Support",
+        content: `**1.  Customer Support**
+• Email: info@primeaxiscapital.in
 • Phone: +91 74286 14189 (Mon-Sat, 9 AM - 8 PM)
 • Response Time: Within 24 hours
-• Resolution Time: Within 7 working days
-
-**Level 2 - Grievance Officer**
-If your complaint is not resolved at Level 1, escalate to:
-• Email: grievance@primeaxis.in
-• Response Time: Within 48 hours
-• Resolution Time: Within 15 working days`,
+• Resolution Time: Within 7 working days`,
       },
       {
-        heading: "3. Information Required",
-        content: `When lodging a complaint, please provide:
-
-• Your full name and contact details
-• Loan application number or account number
-• Date of the incident or issue
-• Detailed description of the complaint
-• Any supporting documents or screenshots
-• Previous communication reference (if any)`,
-      },
-      {
-        heading: "4. Grievance Redressal Officer",
-        content: `**Nodal Officer - Grievance Redressal**
-
-Name: [Officer Name]
-Designation: Grievance Redressal Officer
-Email: grievance@primeaxis.in
-Phone: +91 74286 14189 (Mon-Sat, 9 AM - 8 PM)
-Address: [Company Address], [City], [State] - [PIN]
-
-Office Hours: Monday to Saturday, 9:00 AM to 6:00 PM`,
-      },
-      {
-        heading: "5. Escalation Matrix",
-        content: `If your grievance remains unresolved:
-
-**Level 3 - Principal Nodal Officer**
-• Email: principal.nodal@primeaxis.in
-• Resolution Time: Within 30 working days
-
-**Level 4 - Ombudsman**
-If not satisfied with our resolution, you may approach:
-• Banking Ombudsman (for banking-related complaints)
-• RBI Ombudsman (for NBFC-related complaints)
-• Consumer Disputes Redressal Forum`,
-      },
-      {
-        heading: "6. Tracking Your Complaint",
-        content: `You will receive:
-• Unique complaint reference number
-• Regular updates on complaint status
-• Final resolution communication
-
-Track your complaint status at: www.primeaxis.in/track-complaint or call our helpline.`,
-      },
-      {
-        heading: "7. Response Timeline",
-        content: `As per regulatory guidelines, we adhere to the following timelines:
-
-• Acknowledgment: Within 24 hours
-• First response: Within 7 working days
-• Final resolution: Within 30 working days
-• Closure intimation: Within 3 working days of resolution`,
-      },
-      {
-        heading: "8. Fair Treatment Promise",
+        heading: "2. Fair Treatment Promise",
         content: `We promise to:
 • Treat all complaints with fairness and transparency
 • Not discriminate against customers who raise complaints
@@ -325,11 +257,12 @@ Track your complaint status at: www.primeaxis.in/track-complaint or call our hel
 };
 
 export function LegalPage({ page, onNavigate }: LegalPageProps) {
+  const { goBack } = useNavigation();
   const content = legalContent[page as keyof typeof legalContent];
   const Icon = content.icon;
 
   return (
-    <section className="py-12 md:py-20 min-h-screen" style={{ background: '#f0f7fb' }}>
+    <section className="py-12 md:py-20 min-h-screen bg-light-blue">
       <div className="container mx-auto px-4">
         {/* Back button */}
         <motion.div
@@ -339,7 +272,7 @@ export function LegalPage({ page, onNavigate }: LegalPageProps) {
           className="mb-8"
         >
           <Button
-            onClick={() => onNavigate("home")}
+            onClick={goBack}
             variant="ghost"
             className="text-[#196b92] hover:bg-[#196b92]/10"
           >
@@ -357,8 +290,7 @@ export function LegalPage({ page, onNavigate }: LegalPageProps) {
             className="text-center mb-12"
           >
             <div 
-              className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6"
-              style={{ background: 'linear-gradient(135deg, #196b92 0%, #1b94cb 100%)' }}
+              className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 bg-gradient-primary-simple"
             >
               <Icon className="h-8 w-8 text-white" />
             </div>
@@ -405,7 +337,7 @@ export function LegalPage({ page, onNavigate }: LegalPageProps) {
               Have questions? Contact our support team.
             </p>
             <Button
-              onClick={() => onNavigate("home")}
+              onClick={goBack}
               className="bg-gradient-primary hover:opacity-90 text-white"
             >
               Contact Us

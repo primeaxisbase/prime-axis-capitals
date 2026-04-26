@@ -187,7 +187,7 @@ export function Footer({ onNavigate }: FooterProps) {
           {/* Right section with name and button */}
           <div className="flex items-center gap-3">
             <p className="text-sm text-white/70 font-bold">
-             Arc
+             Owned By TR
             </p>
             {/* Back to top button */}
             <Button
